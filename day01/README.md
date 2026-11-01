@@ -1,0 +1,1 @@
+I gave the AI my resume and asked it to generate a personal website for me in an html.md file that explained my research experience, interests, my hobbies, and asked that it have a dark gradient background as well as a headshot of me. 
