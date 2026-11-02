@@ -1,1 +1,0 @@
-It was kind of complicated to make this happen, I had an issue where I had committed the changes on VSCode but then did not sync them to github and that was difficult for me to figure out, though I am sure that I will look back on this and realize that it was actually a very simple fix.
