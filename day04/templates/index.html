@@ -1,35 +1,185 @@
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grocery Counter</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f5ee;
+            margin: 0;
+            padding: 50px 20px;
+            color: #303b32;
+        }
+
+        .container {
+            max-width: 550px;
+            margin: auto;
+            background-color: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.07);
+        }
+
+        h1 {
+            text-align: center;
+            color: #426b50;
+            margin-bottom: 10px;
+            font-size: 30px;
+        }
+
+        .subtitle {
+            text-align: center;
+            color: #89918a;
+            margin-bottom: 30px;
+            font-size: 15px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 12px;
+            color: #425348;
+        }
+
+        textarea {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #dce3d9;
+            border-radius: 10px;
+            font-family: Arial, sans-serif;
+            font-size: 15px;
+            resize: vertical;
+            background-color: #fafbf8;
+            outline: none;
+        }
+
+        textarea:focus {
+            border-color: #71977b;
+        }
+
+        button {
+            width: 100%;
+            padding: 14px;
+            margin-top: 20px;
+            background-color: #527d5d;
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        button:hover {
+            background-color: #3e6448;
+        }
+
+        .results {
+            margin-top: 35px;
+            border-top: 1px solid #e8ede6;
+            padding-top: 25px;
+        }
+
+        h2 {
+            color: #426b50;
+            font-size: 21px;
+            margin-bottom: 18px;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 13px 15px;
+            margin-bottom: 8px;
+            background-color: #f4f7f1;
+            border-radius: 8px;
+            font-size: 15px;
+        }
+
+        .count {
+            background-color: #dce9dc;
+            color: #426b50;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        .footer {
+            text-align: center;
+            color: #a0a79f;
+            font-size: 12px;
+            margin-top: 30px;
+        }
+    </style>
 </head>
+
 <body>
-    <h1>Grocery Counter</h1>
 
-    <form method="POST">
-        <label for="groceries">Enter your grocery items (one per line):</label>
-        <br><br>
+    <div class="container">
 
-        <textarea
-            id="groceries"
-            name="groceries"
-            rows="10"
-            cols="40"
-            placeholder="Milk&#10;Bread&#10;Eggs&#10;Milk"
-        ></textarea>
+        <h1>Grocery Counter</h1>
 
-        <br><br>
-        <button type="submit">Count Groceries</button>
-    </form>
+        <p class="subtitle">
+            Keep track of your groceries, one item at a time.
+        </p>
 
-    {% if results %}
-        <h2>Results</h2>
-        <ul>
-            {% for item, count in results %}
-                <li>{{ count }} {{ item }}</li>
-            {% endfor %}
-        </ul>
-    {% endif %}
+        <form method="POST">
+
+            <label for="groceries">
+                Enter your grocery items
+            </label>
+
+            <textarea
+                id="groceries"
+                name="groceries"
+                rows="8"
+                placeholder="Milk&#10;Bread&#10;Eggs&#10;Milk"
+            >{{ request.form.get('groceries', '') }}</textarea>
+
+            <button type="submit">
+                Count My Groceries
+            </button>
+
+        </form>
+
+        {% if results %}
+            <div class="results">
+
+                <h2>Your Grocery List</h2>
+
+                <ul>
+                    {% for item, count in results %}
+                        <li>
+                            <span>{{ item }}</span>
+                            <span class="count">{{ count }}</span>
+                        </li>
+                    {% endfor %}
+                </ul>
+
+            </div>
+        {% endif %}
+
+        <p class="footer">
+            Simple shopping, organized.
+        </p>
+
+    </div>
 
 </body>
 </html>
