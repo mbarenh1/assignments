@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Grocery Counter</title>
+</head>
+<body>
+    <h1>Grocery Counter</h1>
+
+    <form method="POST">
+        <label for="groceries">Enter your grocery items (one per line):</label>
+        <br><br>
+
+        <textarea
+            id="groceries"
+            name="groceries"
+            rows="10"
+            cols="40"
+            placeholder="Milk&#10;Bread&#10;Eggs&#10;Milk"
+        ></textarea>
+
+        <br><br>
+        <button type="submit">Count Groceries</button>
+    </form>
+
+    {% if results %}
+        <h2>Results</h2>
+        <ul>
+            {% for item, count in results %}
+                <li>{{ count }} {{ item }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+</body>
+</html>
